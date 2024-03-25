@@ -1,6 +1,7 @@
 This May Brick Your UNI If Not Using The Correct Version
 
 The Current Working Version Is: TBD
+The Current Version Is: 1.6.0
 
 If Your Not Using The Version Which Can Be Checked In The WIFI Menu (NOTE: If You Are On An Earlier Version This May Require Extra Steps, The Extra Steps Will Be Marked With An E (eg: "E Step 1", "E Step 2")
 Then:
