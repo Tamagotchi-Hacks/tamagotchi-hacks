@@ -1,28 +1,33 @@
 wifi_device=$1
 
-echo 'Disconnecting from wifi...'
-nmcli d disconnect $wifi_device
+echo 'Starting NetworkManager.service'
+sudo systemctl restart NetworkManager
+echo 'Restarting wpa_supplicant'
+sudo systemctl restart wpa_supplicant
+echo 'Disconnecting from wifi'
+sudo nmcli d disconnect $wifi_device
+echo 'Deleting all wifi saved networks'
+nmcli connection show | sudo awk '{system("nmcli connection delete " $1)}'
+echo 'Bringing down interface'
+sudo ifconfig $wifi_device down
+echo 'Bringing back up interface'
+sudo ifconfig $wifi_device up
 echo 'Reloading network manager'
-nmcli g reload
-sleep 3
+sudo nmcli g reload
 echo 'Turning off network manager'
-nmcli n off
-sleep 3
+sudo nmcli n off
 echo 'Turning on network manager'
-nmcli n on
-echo 'Changing interface mode to auto'
-iwconfig $wifi_device mode auto
-sleep 3
+sudo nmcli n on
+echo 'Changing interface mode to managed'
+sudo iwconfig $wifi_device mode managed
 #iwconfig $wifi_device txpower off
 #sleep 3
 #iwconfig $wifi_device txpower auto
-echo 'Rfkilling wifi'
-rfkill block wifi
-sleep 3
-echo 'Rfkill unblocking wifi'
-rfkill unblock wifi
-sleep 3
-echo 'Restarting networking stack'
-systemctl restart networking
+#echo 'Rfkilling wifi'
+#sudo rfkill block wifi
+#echo 'Rfkill unblocking wifi'
+#sudo rfkill unblock wifi
+#echo 'Restarting networking stack'
+sudo systemctl restart networking
 iwconfig
 echo 'Done!'

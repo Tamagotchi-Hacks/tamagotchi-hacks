@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 wifi_device=$1
 ifconfig $wifi_device down
 iwconfig $wifi_device mode monitor

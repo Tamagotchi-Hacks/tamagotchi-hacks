@@ -19,9 +19,15 @@ python http_with_body.py
 
 MDK4
 //no result // sudo mdk4 wlan0 f -s p c a -m s t c d -p 500
+sudo mdk4 wlan1 f -s a c -m s t c d -p 500
+
 
 wlan.ra == f4:12:fa:93:e0:dd || wlan.ta == f4:12:fa:93:e0:dd || wlan.ra == d8:3a:dd:1d:51:8b || wlan.ta == d8:3a:dd:1d:51:8b
 
-
 nugget mac = f4:12:fa:93:e0:dd
 rpi2 wlan0 mac = d8:3a:dd:1d:51:8b
+
+NEXT STEPS:
+* try to break wifi scanner with broken packets
+    - try to break network manager web page with broken packets from scanner
+* try to break network attach s=&p= with broken junk
